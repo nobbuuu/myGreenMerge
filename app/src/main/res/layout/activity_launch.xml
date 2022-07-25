@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/login_bg"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".login.LoginActivity">
+
+    <com.ruffian.library.widget.RLinearLayout
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="50dp"
+        app:background_normal="@color/white"
+        app:corner_radius="@dimen/dp_8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="33dp"
+            android:src="@mipmap/company"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="13dp"
+            android:text="智能无感垃圾投递客户端" />
+
+        <com.ruffian.library.widget.REditText
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="40dp"
+            android:background="@null"
+            android:drawableStart="@mipmap/icon_name"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:hint="请输入用户名"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/dp_15"
+            android:selectAllOnFocus="true"
+            app:background_normal="#F9FBFE"
+            app:border_color_normal="#DADADA"
+            app:border_width_normal="2dp"
+            app:corner_radius="@dimen/dp_8" />
+
+        <com.ruffian.library.widget.REditText
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="40dp"
+            android:background="@null"
+            android:drawableStart="@mipmap/login_password"
+            android:drawablePadding="@dimen/dp_10"
+            android:gravity="center_vertical"
+            android:hint="请输入密码"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/dp_15"
+            android:selectAllOnFocus="true"
+            app:background_normal="#F9FBFE"
+            app:border_color_normal="#DADADA"
+            app:border_width_normal="2dp"
+            app:corner_radius="@dimen/dp_8" />
+
+
+        <com.ruffian.library.widget.RTextView
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="40dp"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:background_normal="#F8BB76"
+            app:corner_radius="@dimen/dp_8"
+            android:gravity="center"
+            android:layout_marginEnd="@dimen/dp_40"
+            android:text="登录" />
+
+    </com.ruffian.library.widget.RLinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

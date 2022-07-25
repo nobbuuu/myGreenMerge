@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ruffian.library.widget.RConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:paddingBottom="@dimen/dp_20"
+    app:corner_radius_bottom_left="@dimen/dp_8"
+    app:background_normal="@color/white"
+    app:corner_radius_bottom_right="@dimen/dp_8"
+    android:layout_height="wrap_content">
+
+    <com.ruffian.library.widget.RTextView
+        android:id="@+id/deviceName"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:text="3栋1座-设备1"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:background_normal="@color/mac_text_color"
+        app:corner_radius_top_left="@dimen/dp_8"
+        app:corner_radius_top_right="@dimen/dp_8" />
+
+
+    <TextView
+        android:id="@+id/deviceStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/icon_devices"
+        android:drawablePadding="@dimen/dp_10"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/deviceName"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_010B3C"
+        android:text="设备运行情况：" />
+
+    <TextView
+        android:id="@+id/statusTv"
+        android:layout_width="wrap_content"
+        android:text="正常投放"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deviceName"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:textColor="@color/mac_text_color"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/rubbishTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/icon_rubush"
+        android:drawablePadding="@dimen/dp_10"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/deviceStatus"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_010B3C"
+        android:text="垃圾桶满溢情况：" />
+
+    <TextView
+        android:id="@+id/rubbishStatus"
+        android:layout_width="wrap_content"
+        android:text="50%"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statusTv"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:textColor="@color/color_010B3C"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/recentTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableStart="@mipmap/icon_time"
+        android:drawablePadding="@dimen/dp_10"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/rubbishTitle"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/color_010B3C"
+        android:text="垃圾桶满溢情况：" />
+
+    <TextView
+        android:id="@+id/recentTimeTv"
+        android:layout_width="wrap_content"
+        android:text="14:00"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rubbishStatus"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:textColor="@color/color_010B3C"
+        android:textSize="18sp"
+        android:layout_height="wrap_content"/>
+
+</com.ruffian.library.widget.RConstraintLayout>

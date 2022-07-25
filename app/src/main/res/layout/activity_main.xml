@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/default_bg"
+    tools:context=".main.MainActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/weatherLay"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/weather_bg"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/icWeather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:src="@mipmap/icon_weather"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/timeTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="22:22"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            app:layout_constraintBottom_toBottomOf="@+id/icWeather"
+            app:layout_constraintStart_toEndOf="@+id/icWeather"
+            app:layout_constraintTop_toTopOf="@+id/icWeather" />
+
+        <View
+            android:id="@+id/line"
+            android:layout_width="0.5dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_8"
+            android:layout_marginEnd="@dimen/dp_8"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="@+id/timeTv"
+            app:layout_constraintStart_toEndOf="@+id/timeTv"
+            app:layout_constraintTop_toTopOf="@+id/timeTv" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dp_15"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/line"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/weekTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="星期一"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/line"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/ymd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_4"
+                android:text="2022-07-20"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/line"
+                app:layout_constraintTop_toBottomOf="@+id/parent" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="广州万科金域府"
+            android:textColor="@color/white"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.ruffian.library.widget.RTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:paddingStart="@dimen/dp_20"
+            android:paddingTop="@dimen/dp_8"
+            android:paddingEnd="@dimen/dp_20"
+            android:paddingBottom="@dimen/dp_8"
+            android:text="获取mac地址"
+            android:textColor="@color/mac_text_color"
+            android:textSize="22sp"
+            app:background_normal="@color/mac_bg"
+            app:corner_radius="38dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/deviceRv"
+        android:layout_width="656dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/dp_20"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherLay" />
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:id="@+id/temperatureLay"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginEnd="@dimen/dp_20"
+        app:background_normal="@color/color_8096C4"
+        app:corner_radius="@dimen/dp_8"
+        app:layout_constraintEnd_toStartOf="@+id/deviceRv"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weatherLay">
+
+        <com.ruffian.library.widget.RRelativeLayout
+            android:layout_width="210dp"
+            android:layout_height="match_parent"
+            app:background_normal="@color/color_white_10"
+            app:corner_radius="@dimen/dp_8">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/vanke" />
+        </com.ruffian.library.widget.RRelativeLayout>
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:text="18℃"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/temperatureTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:drawableStart="@mipmap/temperature"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="当前站点温度控制："
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/temperature"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </com.ruffian.library.widget.RConstraintLayout>
+
+    <com.ruffian.library.widget.RImageView
+        android:id="@+id/bigImg"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/dp_20"
+        app:corner_radius="@dimen/dp_8"
+        app:layout_constraintBottom_toTopOf="@+id/botLay"
+        app:layout_constraintEnd_toEndOf="@+id/temperatureLay"
+        app:layout_constraintStart_toStartOf="@+id/temperatureLay"
+        app:layout_constraintTop_toBottomOf="@+id/temperatureLay" />
+
+    <LinearLayout
+        android:id="@+id/botLay"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/dp_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bigImg"
+        app:layout_constraintStart_toStartOf="@+id/bigImg">
+
+        <com.ruffian.library.widget.RLinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="24dp"
+            app:background_normal="@color/white"
+            app:corner_radius="@dimen/dp_8"
+            app:layout_constraintStart_toStartOf="@+id/bigImg"
+            app:layout_constraintTop_toBottomOf="@+id/bigImg">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/putTime"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="定时投放时间"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:background_normal="@color/mac_text_color"
+                app:corner_radius_top_left="@dimen/dp_8"
+                app:corner_radius_top_right="@dimen/dp_8" />
+
+            <TextView
+                android:id="@+id/oneDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:drawableStart="@drawable/shape_circle"
+                android:drawablePadding="@dimen/dp_15"
+                android:text="06:00~09:00"
+                android:textColor="@color/color_010B3C"
+                android:textSize="34sp" />
+
+            <TextView
+                android:id="@+id/twoDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="13dp"
+                android:drawableStart="@drawable/shape_circle"
+                android:drawablePadding="@dimen/dp_15"
+                android:text="06:00~09:00"
+                android:textColor="@color/color_010B3C"
+                android:textSize="34sp" />
+        </com.ruffian.library.widget.RLinearLayout>
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:background_normal="@color/white"
+            app:corner_radius="@dimen/dp_8"
+            app:layout_constraintStart_toStartOf="@+id/bigImg"
+            app:layout_constraintTop_toBottomOf="@+id/bigImg">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/concentration"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="站房内TVOC浓度"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:background_normal="@color/mac_text_color"
+                app:corner_radius_top_left="@dimen/dp_8"
+                app:corner_radius_top_right="@dimen/dp_8" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/concentration">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textColor="@color/color_010B3C"
+                    android:textSize="36sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_10"
+                    android:text="mg/m²"
+                    android:textColor="@color/color_unit"
+                    android:textSize="20sp" />
+            </LinearLayout>
+        </com.ruffian.library.widget.RConstraintLayout>
+
+        <com.ruffian.library.widget.RConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            app:background_normal="@color/white"
+            app:corner_radius="@dimen/dp_8"
+            app:layout_constraintStart_toStartOf="@+id/bigImg"
+            app:layout_constraintTop_toBottomOf="@+id/bigImg">
+
+            <com.ruffian.library.widget.RTextView
+                android:id="@+id/lastTime"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="定时投放时间"
+                android:textColor="@color/white"
+                android:textSize="22sp"
+                app:background_normal="@color/mac_text_color"
+                app:corner_radius_top_left="@dimen/dp_8"
+                app:corner_radius_top_right="@dimen/dp_8" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="14:00"
+                android:textColor="@color/color_010B3C"
+                android:textSize="36sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lastTime" />
+        </com.ruffian.library.widget.RConstraintLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/indicatorLay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        app:layout_constraintEnd_toEndOf="@+id/deviceRv"
+        app:layout_constraintStart_toStartOf="@+id/deviceRv"
+        app:layout_constraintTop_toBottomOf="@+id/deviceRv">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/btn_left" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/indicatorRv"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:orientation="horizontal" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/btn_right" />
+    </LinearLayout>
+
+    <com.ruffian.library.widget.RConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:padding="30dp"
+        app:background_normal="@color/color_E07B7F"
+        app:corner_radius="@dimen/dp_8"
+        app:layout_constraintBottom_toTopOf="@+id/brTv"
+        app:layout_constraintEnd_toEndOf="@+id/deviceRv"
+        app:layout_constraintStart_toStartOf="@+id/deviceRv">
+
+        <TextView
+            android:id="@+id/contactTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@mipmap/icon_person"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="物业联系人："
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/callTel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:drawableStart="@mipmap/icon_call"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="物业联系电话："
+            android:textColor="@color/white"
+            app:layout_constraintTop_toBottomOf="@+id/contactTitle" />
+    </com.ruffian.library.widget.RConstraintLayout>
+
+    <TextView
+        android:id="@+id/brTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dp_20"
+        android:layout_marginBottom="28dp"
+        android:text="环保小屋体系技术支持-深圳绿合环境科技有限公司"
+        android:textColor="@color/color_010B3C"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
