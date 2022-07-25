@@ -22,4 +22,6 @@
     <color name="color_E07B7F">#E07B7F</color>
     <color name="color_white_10">#1AFFFFFF</color>
     <color name="transparent">#FFFFFFFF</color>
+    <color name="color_F4BA76">#F4BA76</color>
+    <color name="color_F4BA76_50">#80F4BA76</color>
 </resources>

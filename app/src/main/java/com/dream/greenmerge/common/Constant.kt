@@ -18,21 +18,6 @@ object Constant {
 
 }
 
-object ShoppingAddressConstant {
-    const val KEY_SHOPPINGADDRESS_CHECK_UUID = "shippingAddress_uuid"
-    const val KEY_INVOICEADDRESS_CHECK_UUID = "invoiceAddress_uuid"
-    const val KEY_SHOPPINGADDRESS_FROM = "shippingAddress_from"
-    const val ADDRESS_SETTING = "address_setting"
-    const val ADDRESS_INVOICE = "address_invoice"
-    const val ORDER_SELECT_ADDRESS = "order_select_address"
-    const val ORDER_SELECT_ADDRESS_INVOICE = "order_select_address_invoice"
-    const val ORDER_SELECT_ADDRESS_RECEIVEGOODS = "order_select_address_receivegoods"
-    const val EDIT_ADDTRESS = "edit_addtress"
-}
-
-object BankConstant {
-    const val KEY_BANK_DETAILS = "key_bank_details"
-}
 
 object CategoryDetailConstant {
     const val CATEGORY_TAB_KEY_WORD = "tab_key_word"
