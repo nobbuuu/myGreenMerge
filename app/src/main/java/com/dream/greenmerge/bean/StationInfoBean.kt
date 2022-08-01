@@ -23,5 +23,6 @@ data class StationInfoBean(
     val temperature: String,
     val type: String,
     val updateBy: String,
-    val updateTime: String
+    val updateTime: String,
+    val ashcanSituation: String,
 )

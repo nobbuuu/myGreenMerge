@@ -17,7 +17,7 @@ object Configs {
     fun isPackageProductType() = BuildConfig.APP_TYPE == APP_PRODUCT_TYPE
 
     /**后台 的URL链接*/
-    private const val URL_APP_PRODUCT = "http://danguang.com"
+    private const val URL_APP_PRODUCT = "http://47.107.234.188:9101"
     private const val URL_APP_UAT = "https://prepc.tclo2o.cn"
     private const val URL_APP_TEST = "http://8.141.82.186:8091"
 

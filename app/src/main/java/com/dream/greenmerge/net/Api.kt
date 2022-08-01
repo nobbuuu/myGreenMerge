@@ -1,12 +1,14 @@
 package com.dream.greenmerge.net
 
+import UserInfoBean
 import com.dream.greenmerge.bean.DevicePageBean
 import com.dream.greenmerge.bean.StationDetailBean
 import com.dream.greenmerge.bean.StationInfoBean
-import com.dream.greenmerge.bean.UserInfoBean
+import com.dream.greenmerge.net.parser.Response
 import rxhttp.toStr
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
+import rxhttp.wrapper.param.toResponseReturn
 
 /**
  * @author : tiaozi
@@ -17,24 +19,24 @@ object Api {
     /**
      * 登录
      */
-    suspend fun login(username: String, password: String): String? {
+    suspend fun login(username: String, password: String): String {
         return RxHttp.postJson("/login")
             .setAssemblyEnabled(false)
             .add("username", username)
             .add("password", password)
             .add("type", "1")
-            .toStr()
+            .toResponse<String>()
             .await()
     }
 
     /**
      * 获取用户信息
      */
-    suspend fun getUserInfo(token: String): UserInfoBean {
+    suspend fun getUserInfo(token: String): String {
         return RxHttp.postForm("/getInfo")
             .setAssemblyEnabled(false)
             .add("TOKEN", token)
-            .toResponse<UserInfoBean>()
+            .toStr()
             .await()
     }
 

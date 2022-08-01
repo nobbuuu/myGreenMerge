@@ -1,6 +1,12 @@
-package com.dream.greenmerge.bean
-
 data class UserInfoBean(
+    val code: Int,
+    val msg: String,
+    val permissions: List<String>,
+    val roles: List<String>,
+    val user: User
+)
+
+data class User(
     val admin: Boolean,
     val avatar: String,
     val createBy: String,
@@ -14,67 +20,67 @@ data class UserInfoBean(
     val nickName: String,
     val params: ParamsX,
     val phonenumber: String,
-    val postIds: String,
-    val projectId: String,
+    val postIds: Any,
+    val projectId: Any,
     val remark: String,
-    val roleId: String,
-    val roleIds: String,
+    val roleId: Any,
+    val roleIds: Any,
     val roles: List<Role>,
-    val salt: String,
-    val searchValue: String,
+    val salt: Any,
+    val searchValue: Any,
     val sex: String,
     val status: String,
-    val updateBy: String,
-    val updateTime: String,
+    val updateBy: Any,
+    val updateTime: Any,
     val userId: Int,
     val userName: String
 )
 
 data class Dept(
-    val ancestors: String,
-    val children: List<String>,
-    val createBy: String,
-    val createTime: String,
-    val delFlag: String,
+    val ancestors: Any,
+    val children: List<Any>,
+    val createBy: Any,
+    val createTime: Any,
+    val delFlag: Any,
     val deptId: Int,
     val deptName: String,
-    val email: String,
+    val email: Any,
     val leader: String,
     val orderNum: String,
     val params: Params,
     val parentId: Int,
-    val parentName: String,
-    val phone: String,
-    val remark: String,
-    val searchValue: String,
+    val parentName: Any,
+    val phone: Any,
+    val remark: Any,
+    val searchValue: Any,
     val status: String,
-    val updateBy: String,
-    val updateTime: String
+    val updateBy: Any,
+    val updateTime: Any
 )
 
 class ParamsX
 
 data class Role(
     val admin: Boolean,
-    val createBy: String,
-    val createTime: String,
+    val createBy: Any,
+    val createTime: Any,
     val dataScope: String,
-    val delFlag: String,
+    val delFlag: Any,
     val deptCheckStrictly: Boolean,
-    val deptIds: String,
+    val deptIds: Any,
     val flag: Boolean,
     val menuCheckStrictly: Boolean,
-    val menuIds: String,
+    val menuIds: Any,
     val params: ParamsXX,
-    val remark: String,
+    val remark: Any,
     val roleId: Int,
     val roleKey: String,
     val roleName: String,
     val roleSort: String,
-    val searchValue: String,
+    val searchValue: Any,
     val status: String,
-    val updateBy: String,
-    val updateTime: String
+    val updateBy: Any,
+    val updateTime: Any
 )
 
 class Params

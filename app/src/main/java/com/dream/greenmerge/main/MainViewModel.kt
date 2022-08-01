@@ -1,6 +1,9 @@
 package com.dream.greenmerge.main
 
+import com.dream.greenmerge.bean.StationInfoBean
+import com.dream.greenmerge.net.Api
 import com.tcl.base.common.BaseViewModel
+import com.tcl.base.event.SingleLiveEvent
 
 /**
  *@author tiaozi
@@ -9,4 +12,12 @@ import com.tcl.base.common.BaseViewModel
  */
 class MainViewModel : BaseViewModel() {
 
+    val unBindData = SingleLiveEvent<List<StationInfoBean>>()
+    val userData = SingleLiveEvent<String>()
+    fun getStationUnbindMac(id: String) {
+        rxLaunchUI({
+            val unbind = Api.getStationUnbindMac(id)
+            unBindData.postValue(unbind)
+        })
+    }
 }

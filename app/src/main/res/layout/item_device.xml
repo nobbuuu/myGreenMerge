@@ -85,7 +85,7 @@
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/color_010B3C"
-        android:text="垃圾桶满溢情况：" />
+        android:text="最近清运时间：" />
 
     <TextView
         android:id="@+id/recentTimeTv"
