@@ -4,7 +4,9 @@ import UserInfoBean
 import com.dream.greenmerge.bean.DevicePageBean
 import com.dream.greenmerge.bean.StationDetailBean
 import com.dream.greenmerge.bean.StationInfoBean
+import com.dream.greenmerge.common.MmkvConstant.KEY_ACCESS_TOKEN
 import com.dream.greenmerge.net.parser.Response
+import com.tcl.base.utils.MmkvUtil
 import rxhttp.toStr
 import rxhttp.wrapper.param.RxHttp
 import rxhttp.wrapper.param.toResponse
@@ -25,17 +27,16 @@ object Api {
             .add("username", username)
             .add("password", password)
             .add("type", "1")
-            .toResponse<String>()
+            .toStr()
             .await()
     }
 
     /**
      * 获取用户信息
      */
-    suspend fun getUserInfo(token: String): String {
-        return RxHttp.postForm("/getInfo")
-            .setAssemblyEnabled(false)
-            .add("TOKEN", token)
+    suspend fun getUserInfo(): String {
+        return RxHttp.get("/getInfo")
+            .addHeader("Authorization", MmkvUtil.decodeString(KEY_ACCESS_TOKEN))
             .toStr()
             .await()
     }
@@ -44,8 +45,7 @@ object Api {
      * 获取项目下未绑定MAC的站点
      */
     suspend fun getStationUnbindMac(id: String): List<StationInfoBean> {
-        return RxHttp.postForm("/lh/lhSiteMgt/siteListToProject")
-            .setAssemblyEnabled(false)
+        return RxHttp.get("/lh/lhSiteMgt/siteListToProject")
             .add("id", id)
             .toResponse<List<StationInfoBean>>()
             .await()
@@ -56,7 +56,6 @@ object Api {
      */
     suspend fun bindMac(id: String, mac: String): String {
         return RxHttp.putJson("/lh/lhSiteMgt/edit")
-            .setAssemblyEnabled(false)
             .add("id", id)
             .add("mac", mac)
             .toStr()
@@ -68,7 +67,6 @@ object Api {
      */
     suspend fun getStationWithMac(mac: String): StationDetailBean {
         return RxHttp.get("/lh/lhSiteMgt/edit")
-            .setAssemblyEnabled(false)
             .add("mac", mac)
             .toResponse<StationDetailBean>()
             .await()
@@ -79,7 +77,6 @@ object Api {
      */
     suspend fun getDeviceList(pageNo: Int, site: String): DevicePageBean {
         return RxHttp.get("/lh/lhEqpMgt/list")
-            .setAssemblyEnabled(false)
             .add("pageNo", pageNo)
             .add("pageSize", 20)
             .add("site", site)

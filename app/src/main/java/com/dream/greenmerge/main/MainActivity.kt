@@ -1,18 +1,21 @@
 package com.dream.greenmerge.main
 
+import android.content.Context
+import android.net.wifi.WifiManager
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.dream.greenmerge.bean.IndicatorBean
-import com.dream.greenmerge.bean.StationInfoBean
 import com.dream.greenmerge.common.MmkvConstant.KEY_USER_PROJECT_ID
 import com.dream.greenmerge.databinding.ActivityMainBinding
 import com.dream.greenmerge.main.adapter.DeviceAdapter
 import com.dream.greenmerge.main.adapter.IndicatorAdapter
 import com.tcl.base.common.ui.BaseActivity
+import com.tcl.base.kt.ktClick
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
+
 
 /**
  *@author tiaozi
@@ -48,6 +51,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         MmkvUtil.decodeString(KEY_USER_PROJECT_ID)?.let {
             viewModel.getStationUnbindMac(it)
         }
+
+        mBinding.mac.ktClick {
+
+        }
     }
 
     override fun initDataOnResume() {
@@ -60,4 +67,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             mDeviceAdapter.setList(it)
         }
     }
+
+    fun getWlanMACaddress(): String? {
+        val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+        val wifiInfo = wifiManager.connectionInfo
+        return wifiInfo?.macAddress
+    }
+
 }

@@ -5,6 +5,7 @@ import android.webkit.WebView
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.RomUtils
 import com.dream.greenmerge.BuildConfig
+import com.dream.greenmerge.common.MmkvConstant
 import com.kingswim.mock.HttpMockInterceptor
 import com.tcl.base.rxnetword.RxHttpManager
 import com.tcl.base.utils.MmkvUtil
@@ -45,6 +46,11 @@ class InitHttpClient : MainTask() {
                 val file = File(mContext.cacheDir, "netCache")
                 RxHttpPlugins.setCache(file, 10 * 1024 * 1024, 60 * 1000)
                 RxHttp.setDebug(BuildConfig.DEBUG, true)
+                RxHttp.setOnParamAssembly { param ->
+                    //根据不同请求添加不同参数，子线程执行，每次发送请求前都会被回调
+                    //如果希望部分请求不回调这里，发请求前调用Param.setAssemblyEnabled(false)即可
+                    param.addHeader("Authorization", MmkvUtil.decodeString(MmkvConstant.KEY_ACCESS_TOKEN))
+                }
             }
             else -> {
                 throw Exception("Context must be Application")

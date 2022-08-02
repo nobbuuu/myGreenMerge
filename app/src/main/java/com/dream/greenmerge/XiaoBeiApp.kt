@@ -4,14 +4,10 @@ package com.dream.greenmerge
 import android.app.Activity
 import android.app.Application
 import android.os.SystemClock
-import com.dream.greenmerge.task.CatchCrashTask
-import com.dream.greenmerge.task.ExceptionMonitorTask
-import com.dream.greenmerge.task.InitHttpClient
-import com.dream.greenmerge.task.InitOtherTask
+import com.dream.greenmerge.task.*
 import com.tcl.base.BaseApplication
 import com.tcl.base.utils.startAppTime
 import com.tcl.launcher.TaskDispatcher
-import com.tcl.tclzjpro.task.*
 import com.tencent.mmkv.MMKV
 
 
@@ -41,6 +37,7 @@ class XiaoBeiApp : BaseApplication() {
             .addTask(InitHttpClient())
             .addTask(InitOtherTask())
             .addTask(ExceptionMonitorTask())
+            .addTask(InitOaidTask())
             .start()
         startAppTime = SystemClock.currentThreadTimeMillis()
     }

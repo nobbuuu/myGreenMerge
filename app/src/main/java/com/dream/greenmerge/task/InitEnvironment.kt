@@ -1,4 +1,4 @@
-package com.tcl.tclzjpro.task
+package com.dream.greenmerge.task
 
 import com.dream.greenmerge.BuildConfig
 import com.dream.greenmerge.common.MmkvConstant
