@@ -20,4 +20,17 @@ class MainViewModel : BaseViewModel() {
             unBindData.postValue(unbind)
         })
     }
+
+    fun bindMac(id: String, mac: String) {
+        rxLaunchUI({
+            Api.bindMac(id, mac)
+            getStationWithMac(mac)
+        })
+    }
+
+    fun getStationWithMac(mac: String) {
+        rxLaunchUI({
+            Api.getStationWithMac(mac)
+        })
+    }
 }

@@ -24,4 +24,10 @@
     <color name="transparent">#FFFFFFFF</color>
     <color name="color_F4BA76">#F4BA76</color>
     <color name="color_F4BA76_50">#80F4BA76</color>
+    <color name="color_4a556b">#4A556B</color>
+    <color name="color_4A556B_50">#804A556B</color>
+
+    <color name="main_text_color">#323232</color>
+    <color name="green">#05C160</color>
+
 </resources>

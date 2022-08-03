@@ -37,7 +37,6 @@ class XiaoBeiApp : BaseApplication() {
             .addTask(InitHttpClient())
             .addTask(InitOtherTask())
             .addTask(ExceptionMonitorTask())
-            .addTask(InitOaidTask())
             .start()
         startAppTime = SystemClock.currentThreadTimeMillis()
     }

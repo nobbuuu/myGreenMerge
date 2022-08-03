@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.ruffian.library.widget.RCheckBox
+        android:id="@+id/selectTv"
+        android:layout_width="wrap_content"
+        app:background_normal="@color/default_bg"
+        app:background_checked="@color/green"
+        app:text_color_normal="@color/main_text_color"
+        app:text_color_checked="@color/white"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_10"
+        app:corner_radius="@dimen/dp_4"
+        android:textSize="@dimen/sp_14"
+        android:button="@null"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingStart="@dimen/dp_16"
+        android:paddingEnd="@dimen/dp_16"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

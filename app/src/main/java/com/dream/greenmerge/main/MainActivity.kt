@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.blankj.utilcode.util.LogUtils
 import com.dream.greenmerge.bean.IndicatorBean
 import com.dream.greenmerge.common.MmkvConstant.KEY_USER_PROJECT_ID
 import com.dream.greenmerge.databinding.ActivityMainBinding
@@ -13,6 +14,7 @@ import com.dream.greenmerge.main.adapter.DeviceAdapter
 import com.dream.greenmerge.main.adapter.IndicatorAdapter
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.nullToEmpty
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
 
@@ -54,6 +56,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
         mBinding.mac.ktClick {
 
+            val mac = getMacAddress()
+            LogUtils.dTag("macTag", mac)
+            viewModel.bindMac(
+                MmkvUtil.decodeString(KEY_USER_PROJECT_ID).nullToEmpty(),
+                mac.nullToEmpty()
+            )
         }
     }
 
@@ -63,12 +71,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun startObserve() {
         super.startObserve()
-        viewModel.unBindData.observe(this){
+        viewModel.unBindData.observe(this) {
             mDeviceAdapter.setList(it)
         }
     }
 
-    fun getWlanMACaddress(): String? {
+    fun getMacAddress(): String? {
         val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
         val wifiInfo = wifiManager.connectionInfo
         return wifiInfo?.macAddress

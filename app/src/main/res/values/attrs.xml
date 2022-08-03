@@ -68,4 +68,8 @@
         <attr name="ucrop_show_frame" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="SelectView">
+        <attr name="columnCount" format="integer" />
+        <attr name="arrayText" format="reference" />
+    </declare-styleable>
 </resources>
