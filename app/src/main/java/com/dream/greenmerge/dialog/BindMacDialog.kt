@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.dream.greenmerge.base.BaseBindingDialog
 import com.dream.greenmerge.bean.StationInfoBean
 import com.dream.greenmerge.databinding.DialogBindmacBinding
+import com.tcl.base.kt.ktClick
+import com.tcl.base.kt.nullToEmpty
 
 class BindMacDialog(
     context: Context,
@@ -14,9 +16,18 @@ class BindMacDialog(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        mBinding.stationRv.setData(data)
 
-        mBinding.stationRv.apply {
+        mBinding.sureTv.ktClick {
+            dismiss()
+            mBinding.stationRv.getSelect()?.let { select ->
+                val id = data.find { it.name == select.nameStr }?.id
+                rightOnClickBlock?.invoke(id.nullToEmpty())
+            }
+        }
 
+        mBinding.cancelTv.ktClick {
+            dismiss()
         }
     }
 }

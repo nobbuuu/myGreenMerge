@@ -2,9 +2,9 @@ package com.dream.greenmerge.task
 
 import com.dream.greenmerge.BuildConfig
 import com.dream.greenmerge.common.MmkvConstant
+import com.dream.greenmerge.net.Configs
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.launcher.task.MainTask
-import com.tcl.tclzjpro.app.Configs
 
 /**
  *Author:tiaozi

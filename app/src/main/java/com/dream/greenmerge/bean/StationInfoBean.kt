@@ -1,5 +1,8 @@
 package com.dream.greenmerge.bean
 
+import com.dream.greenmerge.net.parser.NoDataType
+import java.io.Serializable
+
 data class StationInfoBean(
     val airQuality: String,
     val cleanPeriod: String,
@@ -25,4 +28,4 @@ data class StationInfoBean(
     val updateBy: String,
     val updateTime: String,
     val ashcanSituation: String,
-)
+) : Serializable, NoDataType, SelectInfoBean(false, name)

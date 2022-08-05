@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.dream.greenmerge.R
 import com.dream.greenmerge.adapter.RadiaAdapter
 import com.dream.greenmerge.bean.SelectInfoBean
+import com.dream.greenmerge.bean.StationInfoBean
 
 /**
  * 多行多列单选RadioGroup
@@ -33,9 +34,21 @@ class CustomRadioGroup @JvmOverloads constructor(
         if (array != null) {
             val dataList = arrayListOf<SelectInfoBean>()
             array.forEach {
-                dataList.add(SelectInfoBean(name = it))
+                dataList.add(SelectInfoBean(nameStr = it))
             }
             mAdapter.setList(dataList)
         }
+    }
+
+    fun setData(array: List<StationInfoBean>) {
+        val dataList = arrayListOf<SelectInfoBean>()
+        array.forEach {
+            dataList.add(SelectInfoBean(nameStr = it.name))
+        }
+        mAdapter.setList(dataList)
+    }
+
+    fun getSelect(): SelectInfoBean? {
+        return mAdapter.data.find { it.isCheck }
     }
 }

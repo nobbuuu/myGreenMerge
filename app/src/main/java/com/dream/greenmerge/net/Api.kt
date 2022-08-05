@@ -66,9 +66,19 @@ object Api {
      * 根据mac地址获取站点详情
      */
     suspend fun getStationWithMac(mac: String): StationDetailBean {
-        return RxHttp.get("/lh/lhSiteMgt/edit")
+        return RxHttp.get("/lh/lhSiteMgt/siteInfo")
             .add("mac", mac)
             .toResponse<StationDetailBean>()
+            .await()
+    }
+
+    /**
+     * MAC是否绑定站点
+     */
+    suspend fun isBindMac(mac: String): Boolean {
+        return RxHttp.get("/lh/lhSiteMgt/isItBound")
+            .add("mac", mac)
+            .toResponse<Boolean>()
             .await()
     }
 
@@ -78,7 +88,7 @@ object Api {
     suspend fun getDeviceList(pageNo: Int, site: String): DevicePageBean {
         return RxHttp.get("/lh/lhEqpMgt/list")
             .add("pageNo", pageNo)
-            .add("pageSize", 20)
+            .add("pageSize", 5)
             .add("site", site)
             .toResponse<DevicePageBean>()
             .await()

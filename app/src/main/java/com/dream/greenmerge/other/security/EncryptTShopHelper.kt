@@ -1,7 +1,7 @@
 package com.dream.greenmerge.other.security
 
+import com.dream.greenmerge.net.Configs
 import com.tcl.base.utils.encipher.RSAUtil
-import com.tcl.tclzjpro.app.Configs
 import org.json.JSONObject
 
 object EncryptTShopHelper {

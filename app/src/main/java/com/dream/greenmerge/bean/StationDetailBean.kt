@@ -3,7 +3,7 @@ package com.dream.greenmerge.bean
 data class StationDetailBean(
     val ad: List<Ad>,
     val project: Project,
-    val site: Site
+    val site: Site?
 )
 
 data class Ad(
@@ -63,7 +63,11 @@ data class Site(
     val remark: String,
     val status: Int,
     val temperature: String,
+    val contact: String,
+    val contactNumber: String,
     val type: Int,
     val updateBy: String,
-    val updateTime: String
+    val updateTime: String,
+    val deliveryTime: String?,
+    val disinfectTime: String?
 )

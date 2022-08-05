@@ -7,13 +7,13 @@ data class DevicePageBean(
     val optimizeCountSql: Boolean,
     val orders: List<String>,
     val pages: Int,
-    val records: List<Record>,
+    val records: List<DeviceInfoBean>,
     val searchCount: Boolean,
     val size: Int,
     val total: Int
 )
 
-data class Record(
+data class DeviceInfoBean(
     val ashcanSituation: String,
     val cleanSituation: String,
     val clearTime: String,
@@ -33,7 +33,7 @@ data class Record(
     val remark: String,
     val site: String,
     val siteName: String,
-    val status: Int,
+    val status: String,
     val updateBy: String,
     val updateTime: String
 )
