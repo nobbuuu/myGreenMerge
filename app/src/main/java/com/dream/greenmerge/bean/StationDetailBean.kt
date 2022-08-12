@@ -14,7 +14,7 @@ data class Ad(
     val delFlag: String,
     val endTime: String,
     val id: String,
-    val imagePath: String,
+    var imagePath: String,
     val info: String,
     val name: String,
     val projectId: String,

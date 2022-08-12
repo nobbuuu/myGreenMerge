@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingTop="24dp"
+    android:background="@drawable/shape_radius_8_solide_fff"
+    android:gravity="center"
+    tools:viewBindingIgnore="true">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="8dp"
+        android:paddingBottom="5dp"
+        android:textColor="@color/regular_black"
+        android:textSize="22sp"
+        android:visibility="gone"
+        tools:text="@string/app_name"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:minHeight="100dp"
+        android:lineSpacingExtra="4dp"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textColor="@color/text_norm_black"
+        android:textSize="22sp"
+        tools:text="您确定要清除历史记录？您确定要清除历史记录？您确定要清除历史记录？您确定要清除历史记录？您确定要清除历史记录？您确定要清除历史记录？您确定要清除历史记录？" />
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:background="@color/split_line"
+        android:layout_height="0.33dp">
+
+    </View>
+
+    <LinearLayout
+        android:id="@+id/areaTwoButton"
+        android:layout_width="match_parent"
+        android:layout_height="111dp"
+        android:orientation="horizontal"
+       >
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/text_norm_black"
+            android:textSize="22sp"
+            />
+
+        <View
+            android:id="@+id/viewLine"
+            android:layout_width="0.33dp"
+            android:layout_height="match_parent"
+            android:background="@color/split_line" />
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/color_4A556B"
+            android:textSize="22sp"
+           />
+
+    </LinearLayout>
+
+</LinearLayout>

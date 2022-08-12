@@ -29,5 +29,8 @@
 
     <color name="main_text_color">#323232</color>
     <color name="green">#05C160</color>
+    <color name="color_4A556B">#4A556B</color>
+    <color name="regular_black">#FF2D3132</color>
+
 
 </resources>

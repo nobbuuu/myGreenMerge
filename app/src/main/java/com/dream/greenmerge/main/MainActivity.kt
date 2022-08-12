@@ -5,17 +5,17 @@ import android.net.wifi.WifiManager
 import android.os.Bundle
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.LogUtils
+import com.dream.greenmerge.adapter.ImageAdapter
 import com.dream.greenmerge.bean.IndicatorBean
 import com.dream.greenmerge.common.MmkvConstant.KEY_USER_PROJECT_ID
 import com.dream.greenmerge.databinding.ActivityMainBinding
 import com.dream.greenmerge.dialog.BindMacDialog
-import com.dream.greenmerge.main.adapter.DeviceAdapter
 import com.dream.greenmerge.main.adapter.IndicatorAdapter
 import com.dream.greenmerge.net.Configs
+import com.dream.greenmerge.utils.DialogHelp
 import com.tcl.base.common.adapter.MyFragmentPagerAdapter
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
@@ -38,7 +38,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private var siteId = ""
     private var pageNo = 1
     override fun initView(savedInstanceState: Bundle?) {
-
+        mBinding.bigImg.addBannerLifecycleObserver(this)
         mBinding.preIv.ktClick {
             pageNo--
             if (pageNo < 1) {
@@ -100,10 +100,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 mBinding.title.text = site.name.nullToEmpty()
                 val url = Configs.getAppBaseUrl() + site.projectLogo
                 LogUtils.dTag("ssdd", url)
-                mBinding.bigImg.loadGif(url)
                 mBinding.contactTitle.text = "物业联系人：" + site.contact.nullToEmpty()
                 mBinding.callTel.text = "物业联系电话：" + site.contactNumber.nullToEmpty()
                 val split = site.deliveryTime?.split(",")
+                mBinding.oneDate.isVisible = !split?.getOrNull(0).isNullOrEmpty()
+                mBinding.twoDate.isVisible = !split?.getOrNull(1).isNullOrEmpty()
                 mBinding.oneDate.text = split?.getOrNull(0).nullToEmpty()
                 mBinding.twoDate.text = split?.getOrNull(1).nullToEmpty()
                 mBinding.concentrationTv.text = site.airQuality.nullToEmpty()
@@ -111,10 +112,24 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 viewModel.getDeviceList(1, site.id)
                 siteId = site.id
             }
+            it.ad.forEach { it.imagePath = Configs.getAppBaseUrl() + it.imagePath
+                LogUtils.dTag("uuu","img = " + it.imagePath)
+            }
+            mBinding.bigImg.setAdapter(ImageAdapter(it.ad),true)
         }
         viewModel.isBindMac.observe(this) {
             if (it) {
                 viewModel.getStationWithMac(getMacAddress().nullToEmpty())
+            }else{
+                DialogHelp.showTwoBottomDialog(
+                    contentStr = "MAC地址还未绑定站点",
+                    rightTextStr = "绑定站点",
+                    rightOnClickBlock = {
+                        MmkvUtil.decodeString(KEY_USER_PROJECT_ID)?.let {
+                            viewModel.getStationUnbindMac(it)
+                        }
+                    }
+                )
             }
         }
         viewModel.deviceData.observe(this) {
@@ -149,4 +164,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         return wifiInfo?.macAddress
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mBinding.bigImg.destroy()
+    }
 }

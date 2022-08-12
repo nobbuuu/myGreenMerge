@@ -88,7 +88,7 @@ object Api {
     suspend fun getDeviceList(pageNo: Int, site: String): DevicePageBean {
         return RxHttp.get("/lh/lhEqpMgt/list")
             .add("pageNo", pageNo)
-            .add("pageSize", 5)
+            .add("pageSize", 6)
             .add("site", site)
             .toResponse<DevicePageBean>()
             .await()
