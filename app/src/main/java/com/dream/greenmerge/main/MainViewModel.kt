@@ -40,7 +40,7 @@ class MainViewModel : BaseViewModel() {
         rxLaunchUI({
             val result = Api.getStationWithMac(mac)
             stationDetailResult.postValue(result)
-        })
+        }, showDialog = false)
     }
 
     fun isBindMac(mac: String) {

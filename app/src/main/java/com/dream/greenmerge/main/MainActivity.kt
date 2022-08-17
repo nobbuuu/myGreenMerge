@@ -225,5 +225,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun onDestroy() {
         super.onDestroy()
         mBinding.bigImg.destroy()
+        mHandler.removeCallbacksAndMessages("1")
     }
 }
