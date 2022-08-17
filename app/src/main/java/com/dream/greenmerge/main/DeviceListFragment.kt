@@ -1,10 +1,16 @@
 package com.dream.greenmerge.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.dream.greenmerge.R
 import com.dream.greenmerge.bean.DeviceInfoBean
 import com.dream.greenmerge.databinding.FragmentDeviceListBinding
 import com.dream.greenmerge.main.adapter.DeviceAdapter
+import com.dream.greenmerge.widget.DeviceItemView
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
 

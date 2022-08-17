@@ -3,6 +3,7 @@ package com.dream.greenmerge.main
 import android.content.Context
 import android.net.wifi.WifiManager
 import android.os.Bundle
+import android.os.Handler
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,8 @@ import com.tcl.base.kt.loadGif
 import com.tcl.base.kt.nullToEmpty
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 /**
@@ -33,11 +36,13 @@ import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
  */
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
+    lateinit var mHandler: Handler
     val mIndicatorAdapter = IndicatorAdapter()
     private var isInitDevice = false
     private var siteId = ""
     private var pageNo = 1
     override fun initView(savedInstanceState: Bundle?) {
+        mHandler = Handler(mainLooper)
         mBinding.bigImg.addBannerLifecycleObserver(this)
         mBinding.preIv.ktClick {
             pageNo--
@@ -61,6 +66,57 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
             mIndicatorAdapter.notifyDataSetChanged()
         }
+
+        initTime()
+        mHandler.postDelayed(object : Runnable {
+            override fun run() {
+                val date = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
+                val split = date.split(" ")
+                mBinding.ymd.text = split[0]
+                mBinding.timeTv.text = split[1]
+
+                if (viewModel.isBindMac.value == true) {
+                    viewModel.getStationWithMac(getMacAddress().nullToEmpty())
+                }
+                mHandler.postDelayed(this,1000*20)
+            }
+        }, 1000 * 20)//每20s刷新页面
+    }
+
+
+    fun initTime() {
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = System.currentTimeMillis()
+        val week = calendar.get(Calendar.DAY_OF_WEEK)
+        var tempWeek = "星期一"
+        when (week) {
+            0 -> {
+                tempWeek = "星期六"
+            }
+            1 -> {
+                tempWeek = "星期日"
+            }
+            2 -> {
+                tempWeek = "星期一"
+            }
+            3 -> {
+                tempWeek = "星期二"
+            }
+            4 -> {
+                tempWeek = "星期三"
+            }
+            5 -> {
+                tempWeek = "星期四"
+            }
+            6 -> {
+                tempWeek = "星期五"
+            }
+        }
+        mBinding.weekTv.text = tempWeek
+        val date = SimpleDateFormat("yyyy-MM-dd HH:mm").format(calendar.timeInMillis)
+        val split = date.split(" ")
+        mBinding.ymd.text = split[0]
+        mBinding.timeTv.text = split[1]
     }
 
     override fun initData() {
@@ -112,15 +168,16 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 viewModel.getDeviceList(1, site.id)
                 siteId = site.id
             }
-            it.ad.forEach { it.imagePath = Configs.getAppBaseUrl() + it.imagePath
-                LogUtils.dTag("uuu","img = " + it.imagePath)
+            it.ad.forEach {
+                it.imagePath = Configs.getAppBaseUrl() + it.imagePath
+                LogUtils.dTag("uuu", "img = " + it.imagePath)
             }
-            mBinding.bigImg.setAdapter(ImageAdapter(it.ad),true)
+            mBinding.bigImg.setAdapter(ImageAdapter(it.ad), true)
         }
         viewModel.isBindMac.observe(this) {
             if (it) {
                 viewModel.getStationWithMac(getMacAddress().nullToEmpty())
-            }else{
+            } else {
                 DialogHelp.showTwoBottomDialog(
                     contentStr = "MAC地址还未绑定站点",
                     rightTextStr = "绑定站点",
