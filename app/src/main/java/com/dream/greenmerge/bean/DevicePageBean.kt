@@ -17,6 +17,7 @@ data class DeviceInfoBean(
     val ashcanSituation: String,
     val cleanSituation: String,
     val clearTime: String,
+    val clearTimeHour: String,
     val createBy: String,
     val createTime: String,
     val delFlag: String,
