@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.blankj.utilcode.util.LogUtils
 import com.dream.greenmerge.adapter.ImageAdapter
 import com.dream.greenmerge.bean.IndicatorBean
@@ -78,7 +79,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 if (viewModel.isBindMac.value == true) {
                     viewModel.getStationWithMac(getMacAddress().nullToEmpty())
                 }
-                mHandler.postDelayed(this,1000*20)
+                mHandler.postDelayed(this, 1000 * 20)
             }
         }, 1000 * 20)//每20s刷新页面
     }
@@ -153,7 +154,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             mBinding.contentLay.isVisible = true
             it.site?.let { site ->
                 mBinding.temperature.text = site.temperature.nullToEmpty() + "℃"
-                mBinding.title.text = site.name.nullToEmpty()
+                mBinding.title.text = site.projectName + "-" + site.name.nullToEmpty()
                 val url = Configs.getAppBaseUrl() + site.projectLogo
                 LogUtils.dTag("ssdd", url)
                 mBinding.contactTitle.text = "物业联系人：" + site.contact.nullToEmpty()
@@ -167,6 +168,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 mBinding.deodorantTime.text = site.disinfectTime.nullToEmpty()
                 viewModel.getDeviceList(1, site.id)
                 siteId = site.id
+            }
+            it.project?.let {
+                val url = Configs.getAppBaseUrl() + it.logoPath
+                LogUtils.dTag("logoUrl",url)
+                mBinding.logoImg.load(url)
             }
             it.ad.forEach {
                 it.imagePath = Configs.getAppBaseUrl() + it.imagePath
