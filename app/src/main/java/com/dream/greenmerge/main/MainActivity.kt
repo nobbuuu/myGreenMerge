@@ -17,6 +17,7 @@ import com.dream.greenmerge.databinding.ActivityMainBinding
 import com.dream.greenmerge.dialog.BindMacDialog
 import com.dream.greenmerge.main.adapter.IndicatorAdapter
 import com.dream.greenmerge.net.Configs
+import com.dream.greenmerge.utils.DeviceIdUtil
 import com.dream.greenmerge.utils.DialogHelp
 import com.tcl.base.common.adapter.MyFragmentPagerAdapter
 import com.tcl.base.common.ui.BaseActivity
@@ -40,6 +41,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     val mIndicatorAdapter = IndicatorAdapter()
     private var siteId = ""
     private var pageNo = 1
+    var deviceId = ""
     private val mRunnable = object : Runnable {
         override fun run() {
             viewModel.deviceData.value?.pages?.let {
@@ -57,6 +59,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     override fun initView(savedInstanceState: Bundle?) {
         mHandler = Handler(mainLooper)
+        deviceId = DeviceIdUtil.getDeviceId(this)
         mBinding.bigImg.addBannerLifecycleObserver(this)
         mBinding.indicatorRv.apply {
             adapter = mIndicatorAdapter
@@ -96,7 +99,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 mBinding.timeTv.text = split[1]
 
                 if (viewModel.isBindMac.value == true) {
-                    viewModel.getStationWithMac(getMacAddress().nullToEmpty())
+                    viewModel.getStationWithMac(deviceId)
                 }
                 mHandler.postDelayed(this, 1000 * 20)
             }
@@ -140,8 +143,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     override fun initData() {
-        viewModel.isBindMac(getMacAddress().nullToEmpty())
-
+        viewModel.isBindMac(deviceId)
         mBinding.mac.ktClick {
             MmkvUtil.decodeString(KEY_USER_PROJECT_ID)?.let {
                 viewModel.getStationUnbindMac(it)
@@ -160,11 +162,10 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 "暂无可用站点".ktToastShow()
             } else {
                 BindMacDialog(this, it) {
-                    val mac = getMacAddress()
-                    LogUtils.dTag("macTag", mac)
+                    LogUtils.dTag("macTag", deviceId)
                     viewModel.bindMac(
                         it,
-                        mac.nullToEmpty()
+                        deviceId
                     )
                 }.show()
             }
@@ -201,7 +202,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
         viewModel.isBindMac.observe(this) {
             if (it) {
-                viewModel.getStationWithMac(getMacAddress().nullToEmpty())
+                viewModel.getStationWithMac(deviceId)
             } else {
                 DialogHelp.showTwoBottomDialog(
                     contentStr = "MAC地址还未绑定站点",
@@ -234,13 +235,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
         }
     }
-
-    fun getMacAddress(): String? {
-        val wifiManager = applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        val wifiInfo = wifiManager.connectionInfo
-        return wifiInfo?.macAddress
-    }
-
 
     override fun onDestroy() {
         super.onDestroy()

@@ -35,6 +35,7 @@ data class DeviceInfoBean(
     val site: String,
     val siteName: String,
     val status: String,
+    val deviceStatus: String,
     val updateBy: String,
     val updateTime: String
 )
