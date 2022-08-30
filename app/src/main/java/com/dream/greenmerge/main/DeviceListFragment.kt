@@ -14,7 +14,7 @@ import com.dream.greenmerge.widget.DeviceItemView
 import com.tcl.base.common.ui.BaseFragment
 import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
 
-class DeviceListFragment(val site: String, val page: Int) :
+class DeviceListFragment(var site: String = "", var page: Int = 1) :
     BaseFragment<MainViewModel, FragmentDeviceListBinding>() {
     val mDeviceAdapter = DeviceAdapter()
     override fun initView(savedInstanceState: Bundle?) {
@@ -26,6 +26,11 @@ class DeviceListFragment(val site: String, val page: Int) :
         viewModel.getDeviceList(page, site)
     }
 
+    fun setData(site: String, page: Int){
+        this.site = site
+        this.page = page
+        viewModel.getDeviceList(page, site)
+    }
     fun setData(list: List<DeviceInfoBean>) {
         mDeviceAdapter.setList(list)
     }

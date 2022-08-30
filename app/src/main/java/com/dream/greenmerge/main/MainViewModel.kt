@@ -1,5 +1,6 @@
 package com.dream.greenmerge.main
 
+import com.blankj.utilcode.util.LogUtils
 import com.dream.greenmerge.bean.DeviceInfoBean
 import com.dream.greenmerge.bean.DevicePageBean
 import com.dream.greenmerge.bean.StationDetailBean
@@ -37,6 +38,7 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun getStationWithMac(mac: String) {
+        LogUtils.dTag("mac",mac)
         rxLaunchUI({
             val result = Api.getStationWithMac(mac)
             stationDetailResult.postValue(result)

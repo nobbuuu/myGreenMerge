@@ -12,6 +12,7 @@ class DeviceAdapter : BaseQuickAdapter<DeviceInfoBean, BaseViewHolder>(R.layout.
         holder.setText(R.id.statusTv, if (item.status == "1") "正常" else "禁用")
         holder.setText(R.id.rubbishStatus, item.ashcanSituation.nullToEmpty())
         holder.setText(R.id.recentTimeTv, item.clearTimeHour.nullToEmpty())
+        holder.setText(R.id.deviceName, item.name.nullToEmpty())
 
     }
 }

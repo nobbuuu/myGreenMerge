@@ -22,7 +22,6 @@ import com.tcl.base.common.adapter.MyFragmentPagerAdapter
 import com.tcl.base.common.ui.BaseActivity
 import com.tcl.base.kt.ktClick
 import com.tcl.base.kt.ktToastShow
-import com.tcl.base.kt.loadGif
 import com.tcl.base.kt.nullToEmpty
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.base.weiget.recylerview.WaterFallItemDecoration
@@ -39,12 +38,31 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     lateinit var mHandler: Handler
     val mIndicatorAdapter = IndicatorAdapter()
-    private var isInitDevice = false
     private var siteId = ""
     private var pageNo = 1
+    private val mRunnable = object : Runnable {
+        override fun run() {
+            viewModel.deviceData.value?.pages?.let {
+                val next = (mBinding.deviceVp.currentItem + 1) % it
+                mBinding.deviceVp.currentItem = next
+                mIndicatorAdapter.data.forEachIndexed { index, indicatorBean ->
+                    indicatorBean.isCur = index == next
+                }
+                mIndicatorAdapter.notifyDataSetChanged()
+                mHandler.removeCallbacks(this)
+                mHandler.postDelayed(this, 3000)
+            }
+        }
+    }
+
     override fun initView(savedInstanceState: Bundle?) {
         mHandler = Handler(mainLooper)
         mBinding.bigImg.addBannerLifecycleObserver(this)
+        mBinding.indicatorRv.apply {
+            adapter = mIndicatorAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
+            addItemDecoration(WaterFallItemDecoration(18, 0))
+        }
         mBinding.preIv.ktClick {
             pageNo--
             if (pageNo < 1) {
@@ -69,6 +87,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
         }
 
         initTime()
+        mHandler.removeCallbacksAndMessages("123")
         mHandler.postDelayed(object : Runnable {
             override fun run() {
                 val date = SimpleDateFormat("yyyy-MM-dd HH:mm").format(System.currentTimeMillis())
@@ -171,7 +190,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
             it.project?.let {
                 val url = Configs.getAppBaseUrl() + it.logoPath
-                LogUtils.dTag("logoUrl",url)
+                LogUtils.dTag("logoUrl", url)
                 mBinding.logoImg.load(url)
             }
             it.ad.forEach {
@@ -196,27 +215,22 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             }
         }
         viewModel.deviceData.observe(this) {
-            if (!isInitDevice) {
-                mBinding.indicatorLay.isVisible = it.pages > 1
-                if (it.pages > 1) {
-                    val indicatorList = arrayListOf<IndicatorBean>()
-                    repeat(it.pages) {
-                        indicatorList.add(IndicatorBean(false))
-                    }
-                    mBinding.indicatorRv.apply {
-                        adapter = mIndicatorAdapter
-                        layoutManager =
-                            LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
-                        addItemDecoration(WaterFallItemDecoration(18, 0))
-                    }
-                    mIndicatorAdapter.setList(indicatorList)
-                }
-                val fragments = arrayListOf<Fragment>()
+            mBinding.indicatorLay.isVisible = it.pages > 1
+            if (it.pages > 1) {
+                val indicatorList = arrayListOf<IndicatorBean>()
                 repeat(it.pages) {
-                    fragments.add(DeviceListFragment(siteId, it + 1))
+                    indicatorList.add(IndicatorBean(false))
                 }
-                mBinding.deviceVp.adapter = MyFragmentPagerAdapter(this, fragments)
-                isInitDevice = true
+                mIndicatorAdapter.setList(indicatorList)
+            }
+            val fragments = arrayListOf<Fragment>()
+            repeat(it.pages) {
+                fragments.add(DeviceListFragment(siteId, it + 1))
+            }
+            mBinding.deviceVp.adapter = MyFragmentPagerAdapter(this, fragments)
+            if (it.pages > 1){
+                mHandler.removeCallbacksAndMessages("456")
+                mHandler.postDelayed(mRunnable,3000)
             }
         }
     }
