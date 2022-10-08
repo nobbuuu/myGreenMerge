@@ -84,5 +84,4 @@ dependencies {
     api ThreeParty.mdDialog.materialDialogsCore
     implementation ThreeParty.LOTTIE
 
-    implementation ThreeParty.dataMock
 }

@@ -2,11 +2,8 @@ package com.dream.greenmerge.task
 
 import android.app.Application
 import android.webkit.WebView
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.RomUtils
 import com.dream.greenmerge.BuildConfig
 import com.dream.greenmerge.common.MmkvConstant
-import com.kingswim.mock.HttpMockInterceptor
 import com.tcl.base.rxnetword.RxHttpManager
 import com.tcl.base.utils.MmkvUtil
 import com.tcl.launcher.task.MainTask
@@ -39,7 +36,7 @@ class InitHttpClient : MainTask() {
                     ).apply {
                         if (BuildConfig.DEBUG) {
                             //添加模拟数据拦截器
-                            add(HttpMockInterceptor())
+//                            add(HttpMockInterceptor())
                         }
                     }
                 RxHttp.init(RxHttpManager.init(mContext as Application, interceptors))

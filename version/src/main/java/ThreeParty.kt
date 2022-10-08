@@ -15,8 +15,6 @@ object ThreeParty {
     const val permissionSupportByGuoLin = "com.permissionx.guolindev:permission-support:1.4.0"
     const val luBan = "top.zibin:Luban:1.1.8"
     const val sensorDataSdk = "com.sensorsdata.analytics.android:SensorsAnalyticsSDK:5.4.3"
-    //https://github.com/KingSwim404/KingSwimMock#readme
-    const val dataMock = "com.github.KingSwim404:KingSwimMock:1.0.1"
 
     val rxhttp = RxHttp
     val tencent = Tencent
@@ -47,11 +45,6 @@ object ThreeParty {
     //指示器
     //https://github.com/hackware1993/MagicIndicator
     const val MagicIndicator = "com.github.hackware1993:MagicIndicator:1.7.0"
-
-    //轮播图
-    //https://github.com/zhpanvip/BannerViewPager/blob/master/README_CN.md
-    const val BannerViewPager = "com.github.zhpanvip:BannerViewPager:3.5.2"
-    const val viewpagerindicator = "com.github.zhpanvip:viewpagerindicator:1.0.5"
 
     //代替shape ， 其他状态 ViewHelper
     //https://github.com/RuffianZhong/RWidgetHelper

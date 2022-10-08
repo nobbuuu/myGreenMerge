@@ -70,8 +70,8 @@ public class DeviceIdUtil {
     //需要获得READ_PHONE_STATE权限，>=6.0，默认返回null
     private static String getIMEI(Context context) {
         try {
-            TelephonyManager tm = (TelephonyManager) 
-context.getSystemService(Context.TELEPHONY_SERVICE);
+            TelephonyManager tm = (TelephonyManager)
+                    context.getSystemService(Context.TELEPHONY_SERVICE);
             return tm.getDeviceId();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -87,8 +87,8 @@ context.getSystemService(Context.TELEPHONY_SERVICE);
      */
     private static String getAndroidId(Context context) {
         try {
-            return Settings.Secure.getString(context.getContentResolver(), 
-Settings.Secure.ANDROID_ID);
+            return Settings.Secure.getString(context.getContentResolver(),
+                    Settings.Secure.ANDROID_ID);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -126,8 +126,8 @@ Settings.Secure.ANDROID_ID);
                     Build.MODEL.length() % 10 +
                     Build.PRODUCT.length() % 10 +
                     Build.SERIAL.length() % 10;
-            return new UUID(dev.hashCode(), 
-Build.SERIAL.hashCode()).toString();
+            return new UUID(dev.hashCode(),
+                    Build.SERIAL.hashCode()).toString();
         } catch (Exception ex) {
             ex.printStackTrace();
             return "";
@@ -136,30 +136,31 @@ Build.SERIAL.hashCode()).toString();
 
     /**
      * 取SHA1
+     *
      * @param data 数据
      * @return 对应的hash值
      */
-    private static byte[] getHashByString(String data)
-    {
-        try{
-            MessageDigest  messageDigest = MessageDigest.getInstance("SHA1");
+    private static byte[] getHashByString(String data) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA1");
             messageDigest.reset();
             messageDigest.update(data.getBytes("UTF-8"));
             return messageDigest.digest();
-        } catch (Exception e){
+        } catch (Exception e) {
             return "".getBytes();
         }
     }
 
     /**
      * 转16进制字符串
+     *
      * @param data 数据
      * @return 16进制字符串
      */
-    private static String bytesToHex(byte[] data){
+    private static String bytesToHex(byte[] data) {
         StringBuilder sb = new StringBuilder();
         String stmp;
-        for (int n = 0; n < data.length; n++){
+        for (int n = 0; n < data.length; n++) {
             stmp = (Integer.toHexString(data[n] & 0xFF));
             if (stmp.length() == 1)
                 sb.append("0");

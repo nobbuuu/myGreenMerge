@@ -41,6 +41,7 @@ android {
                 jniLibs.srcDirs = ['libs']
             }
         }
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -127,9 +128,9 @@ dependencies {
     implementation ThreeParty.smartRefresh.footer
     implementation ThreeParty.smartRefresh.classicHeader
     implementation ThreeParty.LOTTIE
-    implementation ThreeParty.ConsecutiveScrollerLayout
-    implementation ThreeParty.XPopUp
-    implementation ThreeParty.MagicIndicator
+//    implementation ThreeParty.ConsecutiveScrollerLayout
+//    implementation ThreeParty.XPopUp
+//    implementation ThreeParty.MagicIndicator
     implementation ThreeParty.AutoSize
     implementation ThreeParty.Glide
     implementation ThreeParty.MarqueeView
@@ -140,7 +141,6 @@ dependencies {
     implementation ThreeParty.luBan
     implementation ThreeParty.tencent.WeChatSdk
 
-    implementation ThreeParty.BannerViewPager
     implementation ThreeParty.permissionSupportByGuoLin
 
     api Google.coil
@@ -148,7 +148,6 @@ dependencies {
 
     implementation ThreeParty.ultraViewPager
     implementation ThreeParty.jwt
-    implementation ThreeParty.dataMock
     implementation ThreeParty.banner
 
     implementation ThreeParty.sensorDataSdk
