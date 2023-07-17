@@ -97,6 +97,13 @@
             android:textSize="18sp"
             app:background_normal="#F8BB76"
             app:corner_radius="@dimen/dp_8"
+            app:border_width_selected="2dp"
+            app:border_color_selected="@color/teal_700"
+            app:border_color_pressed="@color/teal_700"
+            app:border_width_pressed="2dp"
+            app:border_width_normal="2dp"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
             android:gravity="center"
             android:layout_marginEnd="@dimen/dp_40"
             android:text="登录" />
