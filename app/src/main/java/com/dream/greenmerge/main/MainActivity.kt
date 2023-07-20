@@ -107,7 +107,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
 
-    fun initTime() {
+    private fun initTime() {
         val calendar = Calendar.getInstance()
         calendar.timeInMillis = System.currentTimeMillis()
         val week = calendar.get(Calendar.DAY_OF_WEEK)
@@ -189,7 +189,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 viewModel.getDeviceList(1, site.id)
                 siteId = site.id
             }
-            it.project?.let {
+            it.project.let {
                 val url = Configs.getAppBaseUrl() + it.logoPath
                 LogUtils.dTag("logoUrl", url)
                 mBinding.logoImg.load(url)

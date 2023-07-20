@@ -24,7 +24,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
+        <com.dream.greenmerge.widget.FocusRTextView
             android:id="@+id/timeTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
             app:layout_constraintStart_toEndOf="@+id/line"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <com.dream.greenmerge.widget.FocusRTextView
                 android:id="@+id/weekTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -66,7 +66,7 @@
                 app:layout_constraintStart_toEndOf="@+id/line"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.dream.greenmerge.widget.FocusRTextView
                 android:id="@+id/ymd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/parent" />
         </LinearLayout>
 
-        <TextView
+        <com.dream.greenmerge.widget.FocusRTextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:text="广州万科金域府" />
 
-        <com.ruffian.library.widget.RTextView
+        <com.dream.greenmerge.widget.FocusRTextView
             android:id="@+id/mac"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -148,7 +148,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <com.dream.greenmerge.widget.FocusRTextView
                 android:id="@+id/temperature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,7 +160,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <com.dream.greenmerge.widget.FocusRTextView
                 android:id="@+id/temperatureTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -224,7 +224,7 @@
                 app:layout_constraintStart_toStartOf="@+id/bigImg"
                 app:layout_constraintTop_toBottomOf="@+id/bigImg">
 
-                <com.ruffian.library.widget.RTextView
+                <com.dream.greenmerge.widget.FocusRTextView
                     android:id="@+id/putTime"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -245,7 +245,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/putTime">
 
-                    <TextView
+                    <com.dream.greenmerge.widget.FocusRTextView
                         android:id="@+id/oneDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -256,7 +256,7 @@
                         android:textColor="@color/color_010B3C"
                         android:textSize="34sp" />
 
-                    <TextView
+                    <com.dream.greenmerge.widget.FocusRTextView
                         android:id="@+id/twoDate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -283,7 +283,7 @@
                 app:layout_constraintStart_toStartOf="@+id/bigImg"
                 app:layout_constraintTop_toBottomOf="@+id/bigImg">
 
-                <com.ruffian.library.widget.RTextView
+                <com.dream.greenmerge.widget.FocusRTextView
                     android:id="@+id/concentration"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -303,7 +303,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/concentration">
 
-                    <TextView
+                    <com.dream.greenmerge.widget.FocusRTextView
                         android:id="@+id/concentrationTv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -313,7 +313,7 @@
                         tools:layout_editor_absoluteY="102dp"
                         tools:text="0" />
 
-                    <TextView
+                    <com.dream.greenmerge.widget.FocusRTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/dp_10"
@@ -337,7 +337,7 @@
                 app:layout_constraintStart_toStartOf="@+id/bigImg"
                 app:layout_constraintTop_toBottomOf="@+id/bigImg">
 
-                <com.ruffian.library.widget.RTextView
+                <com.dream.greenmerge.widget.FocusRTextView
                     android:id="@+id/lastTime"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
@@ -349,7 +349,7 @@
                     app:corner_radius_top_left="@dimen/dp_8"
                     app:corner_radius_top_right="@dimen/dp_8" />
 
-                <TextView
+                <com.dream.greenmerge.widget.FocusRTextView
                     android:id="@+id/deodorantTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -406,7 +406,7 @@
             app:layout_constraintEnd_toEndOf="@+id/deviceVp"
             app:layout_constraintStart_toStartOf="@+id/deviceVp">
 
-            <TextView
+            <com.dream.greenmerge.widget.FocusRTextView
                 android:id="@+id/contactTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -415,7 +415,7 @@
                 android:text="物业联系人："
                 android:textColor="@color/white" />
 
-            <TextView
+            <com.dream.greenmerge.widget.FocusRTextView
                 android:id="@+id/callTel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -427,7 +427,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/contactTitle" />
         </com.ruffian.library.widget.RConstraintLayout>
 
-        <TextView
+        <com.dream.greenmerge.widget.FocusRTextView
             android:id="@+id/brTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
