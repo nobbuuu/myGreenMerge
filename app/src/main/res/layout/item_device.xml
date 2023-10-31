@@ -30,7 +30,7 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/deviceName"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/color_010B3C"
         android:text="设备运行情况：" />
@@ -40,9 +40,9 @@
         android:layout_width="wrap_content"
         android:text="正常投放"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deviceName"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginEnd="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="@+id/deviceStatus"
+        app:layout_constraintBottom_toBottomOf="@+id/deviceStatus"
+        android:layout_marginEnd="@dimen/dp_10"
         android:textColor="@color/mac_text_color"
         android:textSize="18sp"
         android:layout_height="wrap_content"/>
@@ -56,7 +56,7 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/deviceStatus"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/color_010B3C"
         android:text="垃圾桶满溢情况：" />
@@ -66,9 +66,9 @@
         android:layout_width="wrap_content"
         android:text="50%"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/statusTv"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginEnd="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="@+id/rubbishTitle"
+        app:layout_constraintBottom_toBottomOf="@+id/rubbishTitle"
+        android:layout_marginEnd="@dimen/dp_10"
         android:textColor="@color/color_010B3C"
         android:textSize="18sp"
         android:layout_height="wrap_content"/>
@@ -82,7 +82,7 @@
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/rubbishTitle"
         android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/color_010B3C"
         android:text="最近清运时间：" />
@@ -92,11 +92,12 @@
         android:layout_width="wrap_content"
         android:text="14:00"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rubbishStatus"
-        android:layout_marginTop="@dimen/dp_20"
-        android:layout_marginEnd="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="@+id/recentTime"
+        app:layout_constraintBottom_toBottomOf="@+id/recentTime"
+        android:layout_marginEnd="@dimen/dp_10"
         android:textColor="@color/color_010B3C"
-        android:textSize="18sp"
+
+        android:textSize="16sp"
         android:layout_height="wrap_content"/>
 
 </com.ruffian.library.widget.RConstraintLayout>

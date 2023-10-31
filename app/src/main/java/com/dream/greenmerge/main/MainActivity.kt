@@ -1,7 +1,5 @@
 package com.dream.greenmerge.main
 
-import android.content.Context
-import android.net.wifi.WifiManager
 import android.os.Bundle
 import android.os.Handler
 import androidx.core.view.isVisible
@@ -42,6 +40,8 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private var siteId = ""
     private var pageNo = 1
     var deviceId = ""
+    val bannerRunTime = 1000L * 8
+    val refreshTime = 1000L * 30
     private val mRunnable = object : Runnable {
         override fun run() {
             viewModel.deviceData.value?.pages?.let {
@@ -52,7 +52,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 }
                 mIndicatorAdapter.notifyDataSetChanged()
                 mHandler.removeCallbacks(this)
-                mHandler.postDelayed(this, 3000)
+                mHandler.postDelayed(this, bannerRunTime)
             }
         }
     }
@@ -60,7 +60,6 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     override fun initView(savedInstanceState: Bundle?) {
         mHandler = Handler(mainLooper)
         deviceId = DeviceIdUtil.getDeviceId(this)
-        mBinding.bigImg.addBannerLifecycleObserver(this)
         mBinding.indicatorRv.apply {
             adapter = mIndicatorAdapter
             layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.HORIZONTAL, false)
@@ -101,9 +100,9 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 if (viewModel.isBindMac.value == true) {
                     viewModel.getStationWithMac(deviceId)
                 }
-                mHandler.postDelayed(this, 1000 * 20)
+                mHandler.postDelayed(this, refreshTime)
             }
-        }, 1000 * 20)//每20s刷新页面
+        }, 1000 * 30)//每20s刷新页面
     }
 
 
@@ -116,21 +115,27 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
             0 -> {
                 tempWeek = "星期六"
             }
+
             1 -> {
                 tempWeek = "星期日"
             }
+
             2 -> {
                 tempWeek = "星期一"
             }
+
             3 -> {
                 tempWeek = "星期二"
             }
+
             4 -> {
                 tempWeek = "星期三"
             }
+
             5 -> {
                 tempWeek = "星期四"
             }
+
             6 -> {
                 tempWeek = "星期五"
             }
@@ -179,7 +184,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 LogUtils.dTag("ssdd", url)
                 mBinding.contactTitle.text = "物业联系人：" + site.contact.nullToEmpty()
                 mBinding.callTel.text = "物业联系电话：" + site.contactNumber.nullToEmpty()
-                val split = site.deliveryTime?.split(",")
+                val split = site.deliveryTime?.split(";")
                 mBinding.oneDate.isVisible = !split?.getOrNull(0).isNullOrEmpty()
                 mBinding.twoDate.isVisible = !split?.getOrNull(1).isNullOrEmpty()
                 mBinding.oneDate.text = split?.getOrNull(0).nullToEmpty()
@@ -194,11 +199,12 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 LogUtils.dTag("logoUrl", url)
                 mBinding.logoImg.load(url)
             }
+            LogUtils.dTag("tz", "ad.size = " + it.ad.size)
             it.ad.forEach {
                 it.imagePath = Configs.getAppBaseUrl() + it.imagePath
                 LogUtils.dTag("uuu", "img = " + it.imagePath)
             }
-            mBinding.bigImg.setAdapter(ImageAdapter(it.ad), true)
+            mBinding.bigImg.setAdapter(ImageAdapter(it.ad))
         }
         viewModel.isBindMac.observe(this) {
             if (it) {
@@ -229,16 +235,15 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                 fragments.add(DeviceListFragment(siteId, it + 1))
             }
             mBinding.deviceVp.adapter = MyFragmentPagerAdapter(this, fragments)
-            if (it.pages > 1){
+            if (it.pages > 1) {
                 mHandler.removeCallbacksAndMessages("456")
-                mHandler.postDelayed(mRunnable,3000)
+                mHandler.postDelayed(mRunnable, bannerRunTime)
             }
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        mBinding.bigImg.destroy()
         mHandler.removeCallbacksAndMessages("1")
     }
 }

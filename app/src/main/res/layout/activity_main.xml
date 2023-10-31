@@ -195,7 +195,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/dp_20"
-            app:banner_auto_loop="true"
             app:banner_radius="@dimen/dp_8"
             app:corner_radius="@dimen/dp_8"
             app:layout_constraintBottom_toTopOf="@+id/botLay"
